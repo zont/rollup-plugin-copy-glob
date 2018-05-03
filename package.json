@@ -1,0 +1,40 @@
+{
+  "name": "rollup-plugin-copy-glob",
+  "version": "0.0.1",
+  "description": "Rollup plugin to easily copy files and folders. Glob supported",
+  "main": "index.js",
+  "bin": {
+    "rollup-plugin-copy-glob": "./bin/rollup-plugin-copy-glob"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zont/rollup-plugin-copy-glob"
+  },
+  "keywords": [
+    "rollup",
+    "plugin",
+    "copy",
+    "cp",
+    "cpy",
+    "folder",
+    "file",
+    "files",
+    "glob"
+  ],
+  "author": "Alexander Zonov",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "glob": "^7.1.1",
+    "glob-parent": "^3.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1"
+  },
+  "scripts": {
+    "lint": "eslint --fix index.js"
+  },
+  "engines": {
+    "node": ">=9.0.0"
+  }
+}
