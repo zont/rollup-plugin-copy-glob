@@ -3,6 +3,7 @@
     "eslint:recommended"
   ],
   "env": {
+    "node": true,
     "es6": true,
     "jest": true
   },

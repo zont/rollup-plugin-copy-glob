@@ -43,7 +43,7 @@ const copy = async (from, entry) => {
   }
 };
 
-export default paths => {
+module.exports = paths => {
   return {
     name,
     ongenerate() {
