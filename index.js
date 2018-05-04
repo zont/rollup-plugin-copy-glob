@@ -46,7 +46,7 @@ const copy = async (from, entry) => {
   }
 };
 
-module.exports = (paths, options) => {
+module.exports = (paths, options = {}) => {
   verbose = options.verbose;
 
   return {
