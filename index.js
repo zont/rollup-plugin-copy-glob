@@ -9,6 +9,7 @@ require('colors');
 
 const readFileAsync = promisify(fs.readFile);
 const writeFileAsync = promisify(fs.writeFile);
+let verbose = false;
 
 const createDirIfNotExist = to => {
   const dirs = [];
@@ -35,7 +36,9 @@ const copy = async (from, entry) => {
     try {
       await writeFileAsync(to, await readFileAsync(from));
 
-      console.log('[COPY]'.yellow, from, 'to'.yellow, to);
+      if (verbose) {
+        console.log('[COPY]'.yellow, from, 'to'.yellow, to);
+      }
     } catch (e) {
       console.log('[COPY][ERROR]'.red, from);
       console.error(e);
@@ -43,7 +46,9 @@ const copy = async (from, entry) => {
   }
 };
 
-module.exports = paths => {
+module.exports = (paths, options) => {
+  verbose = options.verbose;
+
   return {
     name,
     ongenerate() {

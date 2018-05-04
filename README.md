@@ -25,7 +25,7 @@ export default {
       { files: 'src/*.{html,css}', dest: 'dist' },
       { files: 'dev/fonts/*.*', dest: 'dist/fonts' },
       { files: 'dev/images/**/*.*', dest: 'dist/images' }
-    ])
+    ], { verbose: true })
   ]
 };
 ```

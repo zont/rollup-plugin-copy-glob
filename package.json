@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-copy-glob",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Rollup plugin to easily copy files and folders. Glob supported",
   "main": "index.js",
   "bin": {
