@@ -63,30 +63,26 @@ module.exports = (paths, { watch = false, verbose = false } = {}) => {
     }
   };
 
-  if (!watch) {
-    let once = true;
-    return {
-      name,
-      ongenerate() {
-        if (once) {
-          once = false;
+  let once = true;
+  return {
+    name,
+    ongenerate() {
+      if (once) {
+        once = false;
+
+        if (watch) {
+          for (const entry of paths) {
+            chokidar.watch(entry.files)
+              .on('add', from => copy(from, entry))
+              .on('change', from => copy(from, entry))
+              .on('unlink', from => remove(from, entry))
+              .on('error', e => console.error(e));
+          }
+        } else {
           for (const entry of paths) {
             glob.sync(entry.files).forEach(file => copy(file, entry));
           }
         }
-      }
-    };
-  }
-
-  return {
-    name,
-    ongenerate() {
-      for (const entry of paths) {
-        chokidar.watch(entry.files)
-          .on('add', from => copy(from, entry))
-          .on('change', from => copy(from, entry))
-          .on('unlink', from => remove(from, entry))
-          .on('error', e => console.error(e));
       }
     }
   };
