@@ -25,11 +25,11 @@ export default {
       { files: 'src/*.{html,css}', dest: 'dist' },
       { files: 'dev/fonts/*.*', dest: 'dist/fonts' },
       { files: 'dev/images/**/*.*', dest: 'dist/images' }
-    ], { verbose: true, watch: false })
+    ], { verbose: true, watch: true })
   ]
 };
 ```
 
 ### Options
   - verbose (default is `false`). Enable/disable logging
-  - watch (default is `true`). Enable/disable watching. If disabled then copy only on start
+  - watch (default is `false`). Enable/disable watching. If disabled then copy only on start
