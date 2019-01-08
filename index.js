@@ -66,7 +66,7 @@ module.exports = (paths, { watch = false, verbose = false } = {}) => {
   let once = true;
   return {
     name,
-    ongenerate() {
+    buildStart() {
       if (once) {
         once = false;
 
