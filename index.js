@@ -30,7 +30,7 @@ const createDirIfNotExist = to => {
 
 const findDestination = (from, entry) => path.join(entry.dest, path.relative(globParent(entry.files), from));
 
-module.exports = (paths, { watch = false, verbose = false } = {}) => {
+module.exports = (paths, { watch = !!process.env.ROLLUP_WATCH, verbose = false } = {}) => {
   const copy = async (from, entry) => {
     const to = findDestination(from, entry);
 
