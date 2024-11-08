@@ -1,6 +1,6 @@
 # rollup-plugin-copy-glob
 
-Rollup plugin to easily copy files and folders. Glob supported
+Rollup plugin to easily copy files and folders. Glob supported. Rename supported
 
 ## Install
 
@@ -23,7 +23,7 @@ export default {
   plugins: [
     copy([
       { files: 'src/*.{html,css}', dest: 'dist' },
-      { files: 'dev/fonts/*.*', dest: 'dist/fonts' },
+      { files: 'src/config.template', dest: 'dist', rename: 'config.json' },
       { files: 'dev/images/**/*.*', dest: 'dist/images' }
     ], { verbose: true, watch: true })
   ]
@@ -32,4 +32,4 @@ export default {
 
 ### Options
   - verbose (default is `false`). Enable/disable logging
-  - watch (default is `false`). Enable/disable watching. If disabled then copy only on start
+  - watch (default is `process.env.ROLLUP_WATCH`). Enable/disable watching. If disabled then copy only on start.
