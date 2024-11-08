@@ -1,4 +1,4 @@
-const { access, mkdir, readFile, stat, unlink, writeFile } = require('fs/promises')
+const { access, copyFile, mkdir, stat, unlink } = require('fs/promises')
 const path = require('path')
 const chokidar = require('chokidar')
 const glob = require('glob')
@@ -17,21 +17,21 @@ const createDirIfNotExist = async destination => {
   }
 }
 
-const findDestination = (from, entry) => {
+const prepareDestination = (from, entry) => {
   const result = path.join(entry.dest, path.relative(globParent(entry.files), from))
 
   return entry.rename ? result.replace(path.basename(result), entry.rename) : result
 }
 
 const copy = async (from, entry, verbose) => {
-  const to = findDestination(from, entry)
-
-  await createDirIfNotExist(to)
   const data = await stat(from)
 
   if (!data.isDirectory()) {
     try {
-      await writeFile(to, await readFile(from))
+      const to = prepareDestination(from, entry)
+
+      await createDirIfNotExist(to)
+      await copyFile(from, to)
 
       if (verbose)
         console.log('[COPY]'.yellow, from, 'to'.yellow, to)
@@ -43,7 +43,7 @@ const copy = async (from, entry, verbose) => {
 }
 
 const remove = async (from, entry, verbose) => {
-  const to = findDestination(from, entry)
+  const to = prepareDestination(from, entry)
 
   try {
     await unlink(to)
